@@ -1,0 +1,23 @@
+.Button {
+    color: #ddd;
+    background-image: linear-gradient(to right bottom, #36f0e3, #004ca2);
+    font-size: 1em;
+    font-weight: bold;
+    border: 0.2em solid #000;
+    border-radius: 30px;
+    padding: 0.5em 1.5em;
+    cursor: pointer;
+}
+
+.Button:focus {
+    outline: none;
+}
+
+.Button:hover {
+    transform: translateY(-0.15em);
+}
+
+.Button:active {
+    color: #000;
+    background-image: none;
+}

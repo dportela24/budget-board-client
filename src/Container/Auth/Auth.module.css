@@ -1,0 +1,33 @@
+.Auth {
+    position: fixed;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Auth input {
+    width: 100%;
+}
+
+.Auth button {
+    margin-top: 2.5em;
+    width: 100%;
+}
+
+.authModeChanger p{
+    margin-top: 1.6em;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.authModeChanger span {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+@media screen and (min-width: 700px) {
+    .Auth{
+        width: 500px;
+    }
+}

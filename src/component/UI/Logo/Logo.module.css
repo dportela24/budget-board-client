@@ -1,0 +1,15 @@
+.Logo {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-filter: drop-shadow(0.1em 0.1em 0.05em rgba(0,0,0,1));
+}
+
+.LogoImg img{
+    height: 4em;
+}
+
+.LogoText {
+    margin-left: 0.5em;
+}

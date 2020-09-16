@@ -1,0 +1,13 @@
+.LogoText {
+    font-family: Lobster;
+    font-weight: 800;
+    background: -webkit-linear-gradient(top left,#36f0e3, #004ca2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.Title {
+    
+    margin: 0;
+    font-size: 2em;
+}
