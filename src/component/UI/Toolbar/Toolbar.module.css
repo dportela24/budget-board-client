@@ -1,0 +1,9 @@
+.Toolbar {
+    height: 5vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #ccc;
+    border-bottom: 3px solid #36f0e3;
+}

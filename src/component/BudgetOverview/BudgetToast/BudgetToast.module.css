@@ -1,0 +1,46 @@
+.BudgetToast {
+    padding: 0.8em;
+    text-transform: uppercase;
+    background-color: #28B9B5;
+    box-sizing: border-box;
+}
+
+.BudgetToast.Expense {
+    background-color: #FF5049;;
+}
+
+.BudgetToast::after {
+    display: table;
+    content: "";
+    clear: both;
+}
+
+.Title {
+    float: left;
+    font-size: 1em;
+    font-weight: 500;
+    color: #292b2e; 
+}
+
+.RightSide {
+    float: right;
+}
+
+.Value {
+    letter-spacing: 0.1em;
+    float: left;
+}
+
+.Percentage {
+    font-size: 0.75em;
+    float: left;
+    width: 3em;
+    padding: 0.2em 0;
+    margin-left: 1em;   
+}
+
+.Percentage.Expense {
+    background-color: rgba(255, 255, 255, 0.2);
+    text-align: center;
+    border-radius: 0.5em;
+}

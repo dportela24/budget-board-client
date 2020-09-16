@@ -7,7 +7,11 @@
 }
 
 .Title {
-    
     margin: 0;
     font-size: 2em;
+}
+
+.InlineTitle {
+    margin: 0;
+    font-size: 3.5em;
 }

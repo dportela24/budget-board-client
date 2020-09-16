@@ -1,0 +1,23 @@
+import React from 'react';
+import classes from './BudgetToast.module.css';
+
+const budgetToast = (props) => {
+    let toastClasses = [classes.BudgetToast];
+    let percentageClasses = [classes.Percentage];
+
+    if (props.type === "expense") {
+        toastClasses.push(classes.Expense);
+        percentageClasses.push(classes.Expense);
+    }
+    return (
+        <div className={toastClasses.join(' ')}>
+            <div className={classes.Title}>{props.type}</div>
+            <div className={classes.RightSide}>
+                <div className={classes.Value}>{props.value}</div>
+                <div className={percentageClasses.join(' ')}>{props.percentage}</div>
+            </div>
+        </div>
+    )
+}
+
+export default budgetToast;

@@ -1,0 +1,23 @@
+.BudgetOverview {
+    color: #eee;
+}
+
+.BudgetOverview > *:last-child {
+    margin-top: 0.5em;
+}
+
+.Title {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 0.3em;
+    font-weight: 100;
+}
+
+.Value {
+    color: #28B9B5;
+    font-weight: 500;
+    font-size: 4em;
+    text-align: center;
+    margin-bottom: 0.3em;
+    letter-spacing: 0.05em;
+}

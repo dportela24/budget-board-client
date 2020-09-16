@@ -11,7 +11,7 @@ const logo = (props) => {
             </div>
 
             <div className={classes.LogoText}>
-                <LogoText/>
+                <LogoText inline={props.inline}/>
             </div>
         </div>
     )
