@@ -8,22 +8,12 @@
     background-color: #FF5049;
 }
 
-.BudgetToast::after {
-    display: table;
-    content: "";
-    clear: both;
-}
-
 .Title {
     float: left;
     font-size: 0.9em;
     font-weight: 500;
     color: #292b2e; 
     margin-top: 0.1em;
-}
-
-.RightSide {
-    float: right;
 }
 
 .Value {

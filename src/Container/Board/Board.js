@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 import Toolbar from '../../component/UI/Toolbar/Toolbar'
 import BudgetOverview from '../../component/BudgetOverview/BudgetOverview';
-import NewEntryForm from '../../component/NewEntryForm/NewEntryForm';
+import NewEntryForm from './NewEntryForm/NewEntryForm';
+import EntryList from '../../component/EntryList/EntryList';
 import classes from './Board.module.css';
 
 class Board extends Component {
     state = {
-        budget: 0,
-        income: 0,
+        budget: 1000,
+        income: 2000,
         expense: 0,
+        incomeSort: 'date',
+        incomeList: [{
+            description: 'Paycheck',
+            value: 1500,
+        },{
+            description: 'Project',
+            value: 700,
+        }],
+        expenseSort: 'date',
+        expenseList: [{
+            description: 'Groceries',
+            value: 50
+        }],
     }
 
     onSubmit = (type, description, value) => {
@@ -27,6 +41,7 @@ class Board extends Component {
     }
 
     render() {
+
         return (
             <div className={classes.Board}>
                 <Toolbar onLogOut={() => console.log('log out')}/>
@@ -42,7 +57,10 @@ class Board extends Component {
                     <NewEntryForm onSubmit={this.onSubmit}/>
                 </div>
 
-                <div className={classes.BudgetLists}/>
+                <div className={classes.BudgetLists}>
+                    <EntryList type='income' sort={this.state.incomeSort} list={this.state.incomeList} total={this.state.income}/>
+                    <EntryList type='expense' sort={this.state.expenseSort} list={this.state.expenseList} total={this.state.income}/>
+                </div>
             </div>
         )
     }

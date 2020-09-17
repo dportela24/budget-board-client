@@ -1,0 +1,63 @@
+.EntryItem {
+    padding: 13px;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.EntryItem:first-child { border-top: 1px solid #e7e7e7; }
+.EntryItem:nth-child(even) { background-color: #f7f7f7; }
+
+.Description {
+    float: left;
+}
+
+.Value {
+    float:left;
+    transition: transform 0.3s;
+    color: #28B9B5;
+}
+
+.Value.Expense {
+    color: #FF5049;
+}
+
+.Percentage {
+    float: left;
+    margin-left: 20px;
+    transition: transform 0.3s;
+    font-size: 11px;
+    padding: 3px;
+    border-radius: 3px;
+    width: 32px;
+    text-align: center;
+    background-color: #ddfffe;
+    color: #28B9B5;
+}
+
+.Percentage.Expense {
+    background-color: #FFDAD9;
+    color: #FF5049;
+}
+
+.Delete {
+    float: left;
+}
+
+.Delete button {
+    font-size: 18px;
+    color: #777777;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    display: none;
+}
+
+.Delete button:focus { outline: none; }
+
+.Delete button:active { transform: translateY(2px); }
+
+.EntryItem:hover .Delete button { display: block; }
+.EntryItem:hover .Value { transform: translateX(-20px); }
+.EntryItem:hover .Percentage { transform: translateX(-20px); }

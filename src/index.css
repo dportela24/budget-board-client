@@ -11,3 +11,13 @@ body {
 body * {
   box-sizing: border-box;
 }
+
+.right {
+  float: right;
+}
+
+.clearfix::after {
+  display: table;
+  content: "";
+  clear: both;
+}

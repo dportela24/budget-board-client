@@ -1,3 +1,9 @@
+.Board {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
 .BudgetOverview {
     position: relative;
     height: 18em;
@@ -8,4 +14,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.BudgetLists {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    width: 100%;
+    padding-top: 60px;
 }

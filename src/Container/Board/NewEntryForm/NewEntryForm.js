@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Input from '../UI/Form/Input/Input';
-import Select from '../UI/Form/Select/Select';
+import Input from '../../../component/UI/Form/Input/Input';
+import Select from '../../../component/UI/Form/Select/Select';
 import classes from './NewEntryForm.module.css';
-import PlusButton from '../UI/Form/PlusButton/PlusButton'
+import PlusButton from '../../../component/UI/Form/PlusButton/PlusButton'
 
 const OPTIONS = [{
     value: 'income',

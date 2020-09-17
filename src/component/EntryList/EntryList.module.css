@@ -1,0 +1,45 @@
+.EntryList {
+    float: left;
+    width: 475px;
+    margin-right: 50px;
+}
+
+.Title {
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    float: left;
+    color: #28B9B5;
+}
+
+.Title.Expense {
+    color: #FF5049;
+}
+
+.Sort {
+    float: right;
+}
+
+.Sort input {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+.Sort label {
+    margin: 7px;
+    color: #dddddd;
+    vertical-align: middle;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.Sort input:checked + label {
+    color: #555555;
+}
+
+.Sort input:hover + label {
+    transform: scale(1.5);
+}
