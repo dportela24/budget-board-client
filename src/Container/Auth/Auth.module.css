@@ -6,6 +6,10 @@
     transform: translate(-50%, -50%);
 }
 
+.Auth form {
+    margin-top: 3em;
+}
+
 .Auth input {
     width: 100%;
 }

@@ -2,11 +2,10 @@
     padding: 0.8em;
     text-transform: uppercase;
     background-color: #28B9B5;
-    box-sizing: border-box;
 }
 
 .BudgetToast.Expense {
-    background-color: #FF5049;;
+    background-color: #FF5049;
 }
 
 .BudgetToast::after {
@@ -17,9 +16,10 @@
 
 .Title {
     float: left;
-    font-size: 1em;
+    font-size: 0.9em;
     font-weight: 500;
     color: #292b2e; 
+    margin-top: 0.1em;
 }
 
 .RightSide {

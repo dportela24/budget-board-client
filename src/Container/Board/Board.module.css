@@ -1,13 +1,9 @@
-.Board {
-    position: relative;
-}
-
 .BudgetOverview {
-    height: 30vh;
+    position: relative;
+    height: 18em;
 }
 
 .BudgetOverview > * {
-    margin-top: 0.5em;
     position: absolute;
     top: 50%;
     left: 50%;

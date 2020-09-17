@@ -1,0 +1,29 @@
+.Large {
+    width: 400px;
+}
+
+.Small {
+    width: 100px;
+}
+
+input.Expense:focus,
+select.Expense:focus {
+    border: 2px solid #FF5049;
+}
+
+input.Income:focus,
+select.Income:focus {
+    border: 2px solid #28B9B5;
+}
+
+button.Income {
+    color: #28B9B5
+}
+
+button.Expense {
+    color: #FF5049
+}
+
+.Invalid {
+    background-color: rgb(250, 199, 199);
+}

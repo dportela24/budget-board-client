@@ -1,14 +1,31 @@
 import React, { Component } from 'react';
-import BudgetOverview from '../../component/BudgetOverview/BudgetOverview';
 import Toolbar from '../../component/UI/Toolbar/Toolbar'
-import classes from './Board.module.css'
+import BudgetOverview from '../../component/BudgetOverview/BudgetOverview';
+import NewEntryForm from '../../component/NewEntryForm/NewEntryForm';
+import classes from './Board.module.css';
 
 class Board extends Component {
     state = {
-        budget: 400000,
-        income: 400000,
-        expense: 2000000,
+        budget: 0,
+        income: 0,
+        expense: 0,
     }
+
+    onSubmit = (type, description, value) => {
+        const updatedObject = {...this.state};
+
+        console.log(value)
+        if (type==='income') {
+            updatedObject.income += value;
+        } else {
+            updatedObject.expense += value;
+        }
+
+        updatedObject.budget = updatedObject.income - updatedObject.expense;
+
+        this.setState(updatedObject)
+    }
+
     render() {
         return (
             <div className={classes.Board}>
@@ -19,6 +36,10 @@ class Board extends Component {
                         total={this.state.budget}
                         income={this.state.income}
                         expense={this.state.expense}/>
+                </div>
+
+                <div className={classes.Form}>
+                    <NewEntryForm onSubmit={this.onSubmit}/>
                 </div>
 
                 <div className={classes.BudgetLists}/>

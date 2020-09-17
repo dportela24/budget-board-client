@@ -1,0 +1,9 @@
+.NewEntryForm {
+    display: flex;
+    justify-content: center;
+    padding: 14px;
+    border-bottom: 1px solid #e7e7e7;
+    background-color: #f7f7f7;
+    margin: 0 auto;
+    text-align: center;
+}
