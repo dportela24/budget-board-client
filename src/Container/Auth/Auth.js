@@ -64,7 +64,13 @@ class Auth extends Component {
 
             axios.post(url, requestBody)
             .then (response => {
-                this.props.history.push('/board');
+                this.props.history.replace({
+                    pathname: '/board',
+                    state: {
+                        userId: response.data.user._id,
+                        token: response.data.token
+                    }
+                });
             })
             .catch (error => {
                 const response = error.response;

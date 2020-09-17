@@ -14,9 +14,11 @@ const entryList = (props) => {
     const entries = props.list.map( entry => {
         return (
             <EntryItem
+                key={entry._id}
                 description={entry.description}
                 value={entry.value}
                 percentage={calculatePercentage(entry.value, props.total)}
+                onDeleteEntry={() => props.onDeleteEntry(entry._id, props.type)}
                 type={props.type}/>
         )
     })
@@ -26,13 +28,15 @@ const entryList = (props) => {
             <div className={classes.Header + ' clearfix'}>
                 <div className={titleClasses.join(' ')}>{title}</div>
 
-                <div className={classes.Sort}>
-                        <input type="radio" name="income_sort_method" id="income_sort_date" checked="checked" value="date"/>
-                        <label htmlFor="income_sort_date"><i className="far fa-calendar-alt"></i></label>
-                        <input type="radio" name="income_sort_method" id="income_sort_description" value="description"/>
-                        <label htmlFor="income_sort_description"><i className="fas fa-sort-alpha-down"></i></label>
-                        <input type="radio" name="income_sort_method" id="income_sort_value" value="value"/>
-                        <label htmlFor="income_sort_value"><i className="fas fa-dollar-sign"></i></label>
+                <div className={classes.Sort} onChange={(e) => props.onChangeSortMethod(props.type, e.target.value)}>
+                        <input type="radio" name={`${props.type}_sort`} id={`${props.type}_sort_date`} defaultChecked value="date"/>
+                        <label htmlFor={`${props.type}_sort_date`}><i className="far fa-calendar-alt"></i></label>
+
+                        <input type="radio" name={`${props.type}_sort`} id={`${props.type}_sort_description`} value="description"/>
+                        <label htmlFor={`${props.type}_sort_description`}><i className="fas fa-sort-alpha-down"></i></label>
+
+                        <input type="radio" name={`${props.type}_sort`} id={`${props.type}_sort_value`} value="value"/>
+                        <label htmlFor={`${props.type}_sort_value`}><i className="fas fa-dollar-sign"></i></label>
                 </div>
             </div>
 

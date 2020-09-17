@@ -15,10 +15,10 @@ const entryItem = (props) => {
             <div className={classes.Description}>{props.description}</div>
 
             <div className={'right'}>
-                <div className={valueClasses.join(' ')}>{formatValue(props.value)}</div>
+                <div className={valueClasses.join(' ')}>{formatValue(props.value, props.type)}</div>
                 <div className={percentageClasses.join(' ')}>{props.percentage}</div>
                 <div className={classes.Delete}>
-                    <button><i className="far fa-trash-alt"></i></button>
+                    <button onClick={props.onDeleteEntry}><i className="far fa-trash-alt"></i></button>
                 </div>
             </div>
         </div>
