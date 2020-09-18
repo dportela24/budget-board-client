@@ -2,9 +2,10 @@ import React from 'react';
 import classes from './Input.module.css';
 import formClasses from '../Form.module.css';
 
-const input = (props) => {
+const input = React.forwardRef( (props, ref) => {
     const inputClasses = [classes.Input];
 
+    // Add classes accordingly to change appearence
     if (props.invalid) inputClasses.push(formClasses.Invalid);
 
     if (props.size === 'large') inputClasses.push(formClasses.Large);
@@ -25,11 +26,12 @@ const input = (props) => {
                 type={props.type ? props.type : 'text'}
                 value={props.value}
                 placeholder={props.placeholder}
+                ref={ref}
                 onChange={props.onChange}/>
 
             {errorText}
         </div>
     )
-}
+});
 
 export default input;

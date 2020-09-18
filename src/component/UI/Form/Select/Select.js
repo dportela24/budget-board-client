@@ -5,6 +5,7 @@ import formClasses from '../Form.module.css'
 const select = (props) => {
     const selectClasses = [classes.Select];
 
+    // Add class accordingly to change appearence
     if (props.entryType === 'expense') selectClasses.push(formClasses.Expense);
     else if (props.entryType === 'income') selectClasses.push(formClasses.Income);
 

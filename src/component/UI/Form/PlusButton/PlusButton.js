@@ -5,6 +5,7 @@ import formClasses from '../Form.module.css'
 const plusButton = (props) => {
     const buttonClasses = [classes.PlusButton];
 
+    // Add class accordingly to change appearence
     if (props.entryType === 'expense') buttonClasses.push(formClasses.Expense);
     else if (props.entryType === 'income') buttonClasses.push(formClasses.Income);
 

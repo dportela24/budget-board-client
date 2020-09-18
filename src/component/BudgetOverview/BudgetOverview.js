@@ -4,13 +4,20 @@ import {formatValue, calculatePercentage} from '../../utils';
 import classes from './BudgetOverview.module.css';
 
 const budgetOverview = (props) => {
+    const classesValue = [classes.Value];
+
+    // Add class accordingly to change appearence
+    if (props.total < 0) {
+        classesValue.push(classes.Negative);
+    }
+
     return (
         <div className={classes.BudgetOverview}>
             <div className={classes.Title}>
                 Your current budget:
             </div>
             
-            <div className={classes.Value}>{formatValue(props.total)}</div>
+            <div className={classesValue.join(' ')}>{formatValue(props.total)}</div>
             
             <BudgetToast 
                 type="income"

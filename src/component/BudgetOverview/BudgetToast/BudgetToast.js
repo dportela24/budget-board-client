@@ -5,6 +5,7 @@ const budgetToast = (props) => {
     let toastClasses = [classes.BudgetToast, 'clearfix'];
     let percentageClasses = [classes.Percentage];
 
+    // Add class accordingly to change appearence
     if (props.type === "expense") {
         toastClasses.push(classes.Expense);
         percentageClasses.push(classes.Expense);

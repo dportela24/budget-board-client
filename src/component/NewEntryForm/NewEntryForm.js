@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Input from '../../../component/UI/Form/Input/Input';
-import Select from '../../../component/UI/Form/Select/Select';
+import React, { useRef, useState } from 'react';
+import Input from '../UI/Form/Input/Input';
+import Select from '../UI/Form/Select/Select';
 import classes from './NewEntryForm.module.css';
-import PlusButton from '../../../component/UI/Form/PlusButton/PlusButton'
+import PlusButton from '../UI/Form/PlusButton/PlusButton'
 
 const OPTIONS = [{
     value: 'income',
@@ -16,8 +16,9 @@ const NewEntryForm = (props) => {
     const [type, setType] = useState('income');
     const [description, setDescription] = useState({value:'', valid:true});
     const [value, setValue] = useState({value:'', valid:true});
+    const descriptionInput = useRef();
 
-    const clearStates = () => {
+    const clearInputs = () => {
         setDescription({value:'', valid:true});
         setValue({value:'', valid:true});
     }
@@ -44,7 +45,8 @@ const NewEntryForm = (props) => {
         if (formIsValid()) {
             console.log('submiting')
             props.onSubmit(type, description.value, parseInt(value.value));
-            clearStates();
+            clearInputs();
+            descriptionInput.current.focus();
         }
     }
 
@@ -61,6 +63,7 @@ const NewEntryForm = (props) => {
                 placeholder='Add a description'
                 size="large"
                 entryType={type}
+                ref={descriptionInput}
                 onChange={e => setDescription({value:e.target.value, valid:true})}/>
             
             <Input 

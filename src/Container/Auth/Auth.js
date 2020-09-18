@@ -3,7 +3,8 @@ import axios from '../../axios';
 import Input from '../../component/UI/Form/Input/Input';
 import TextContainer from '../../component/UI/TextContainer/TextContainer';
 import Button from '../../component/UI/Form/Button/Button';
-import Logo from '../../component/UI/Logo/Logo'
+import Logo from '../../component/UI/Logo/Logo';
+import { getStoredAuth, storeAuth } from '../../utils'
 import classes from './Auth.module.css';
 
 class Auth extends Component {
@@ -21,6 +22,15 @@ class Auth extends Component {
         isLoggingIn: true
     }
 
+    componentDidMount = () => {
+        // Check for token in localStorage
+        const auth = getStoredAuth();
+        if (auth.token) {
+            this.props.history.replace('/board');
+        }
+    }
+
+    // Update nested element
     updateElement = (field, key, newValue) => {
         this.setState( (prevState) => {
             return({
@@ -64,13 +74,14 @@ class Auth extends Component {
 
             axios.post(url, requestBody)
             .then (response => {
-                this.props.history.replace({
-                    pathname: '/board',
-                    state: {
-                        userId: response.data.user._id,
-                        token: response.data.token
-                    }
-                });
+                const username = response.data.user.username;
+                const token = response.data.token;
+
+                // Store token in localStorage
+                storeAuth(token, username);
+
+                // Forward user
+                this.props.history.replace('/board');
             })
             .catch (error => {
                 const response = error.response;

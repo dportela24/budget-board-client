@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import classes from './Toolbar.module.css'
 import Logo from '../../UI/Logo/Logo'
 
@@ -9,9 +10,9 @@ const toolbar = (props) => {
                 <Logo style={{fontSize:"0.5em"}} inline/>
             </div>
 
-            <div className={classes.LogOut}>
+            <div>
                 <p>
-                    Logged as Username. <span onClick={props.onLogOut}>Leave.</span>
+                    Logged as {props.username}. <Link to="/logout"><span className={classes.LogOut}>Leave.</span></Link>
                 </p>
             </div>
         </header>

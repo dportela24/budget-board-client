@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import Toolbar from '../../component/UI/Toolbar/Toolbar'
 import BudgetOverview from '../../component/BudgetOverview/BudgetOverview';
-import NewEntryForm from './NewEntryForm/NewEntryForm';
+import NewEntryForm from '../../component/NewEntryForm/NewEntryForm';
 import EntryList from '../../component/EntryList/EntryList';
 import classes from './Board.module.css';
 import axios from '../../axios';
+import { compareEntries, insertSorted, getStoredAuth } from '../../utils';
 
 class Board extends Component {
     state = {
+        username: '',
         budget: 0,
         income: 0,
         expense: 0,
@@ -15,31 +17,36 @@ class Board extends Component {
         incomeList: [],
         expenseSort: 'date',
         expenseList: [],
+        token: ''
     }
 
     componentDidMount = () => {
-        const token = this.props.location.state.token;
+        // Check if token stored in localStorage
+        const auth = getStoredAuth();
+        if (!auth.token) {
+            this.props.history.replace('/');
+        }
 
-        axios.get('/all-entries?auth=' + token)
+        axios.get('/all-entries?auth=' + auth.token)
         .then( response => {
             const fetchedIncomes = response.data.incomes;
             const fetchedExpenses = response.data.expenses;
 
-            this.sortList(fetchedIncomes, this.state.incomeSort);
-            this.sortList(fetchedExpenses, this.state.expenseSort);
+            fetchedIncomes.sort( (a, b) => compareEntries(a,b, this.state.incomeSort))
+            fetchedExpenses.sort( (a, b) => compareEntries(a,b, this.state.expenseSort))
 
-            console.log(fetchedIncomes);
             const incomeTotal = fetchedIncomes.reduce( (sum, income) => sum += income.value, 0);
             const expenseTotal = fetchedExpenses.reduce( (sum, expense) => sum += expense.value, 0);
             const budgetTotal = incomeTotal - expenseTotal;
 
             this.setState({
+                username: auth.username,
                 budget: budgetTotal,
                 income: incomeTotal,
                 expense: expenseTotal,
                 incomeList: fetchedIncomes,
                 expenseList: fetchedExpenses,
-                token
+                token: auth.token
             })
         })
         .catch( error => {
@@ -47,6 +54,7 @@ class Board extends Component {
         })
     }
 
+    // Update overview values
     updateTotals = (type, value) => {
         const updatedTotals = {
             budget: this.state.budget,
@@ -60,26 +68,7 @@ class Board extends Component {
         this.setState({...updatedTotals});
     }
 
-    sortList = (list, sortMethod) => {
-        list.sort( (prev, next) => {
-            let a = prev[sortMethod], b = next[sortMethod];
-
-            if (sortMethod === 'description') {
-                // Alphabetically Z > A, swap a with b to
-                // sort from Z->A to A->Z
-                const c = a.toLowerCase();
-                a = b.toLowerCase();
-                b = c.toLowerCase();
-            }
-
-            if (a > b) return -1;
-            if (b > a) return 1;
-            return 0
-        });
-    }
-
-    onSubmit = (type, description, value) => {
-        
+    onAddNewEntry = (type, description, value) => {
         axios.post(`/${type}?auth=${this.state.token}`, {description, value})
         .then( response => {
             const _id = response.data._id;
@@ -89,14 +78,14 @@ class Board extends Component {
                 ...this.state[`${type}List`]
             ]
             
-            updatedList.push({
+            const newEntry = {
                 description,
                 value,
                 date,
                 _id
-            })
+            }
 
-            console.log(updatedList);
+            insertSorted(updatedList, newEntry, this.state[`${type}Sort`]);
             
             this.setState({
                 [`${type}List`]: updatedList
@@ -127,13 +116,11 @@ class Board extends Component {
 
             this.setState({[`${type}List`]: updatedList})
 
-            console.log(removedElement)
-
             this.updateTotals(type, -removedElement.value);
         })
         .catch( e => {
             console.log(e.response);
-            if (e.response.data) {
+            if (e.response) {
                 alert(e.response.data)
             } else {
                 alert('Could not connect to database....')
@@ -144,17 +131,18 @@ class Board extends Component {
 
     onChangeSortMethod = (type, sortMethod) => {
         let updatedList = [...this.state[`${type}List`]];
-        this.sortList(updatedList, sortMethod);
 
-        this.setState({[`${type}List`]: updatedList})
+        updatedList.sort( (a, b) => compareEntries(a,b, sortMethod))
+
+        this.setState({
+            [`${type}List`]: updatedList,
+            [`${type}Sort`]: sortMethod})
     }
 
     render() {
-        // console.log(this.state.incomeList);
-        // console.log(this.state.expenseList);
         return (
             <div className={classes.Board}>
-                <Toolbar onLogOut={() => console.log('log out')}/>
+                <Toolbar username={this.state.username}/>
 
                 <div className={classes.BudgetOverview}>
                     <BudgetOverview
@@ -164,12 +152,23 @@ class Board extends Component {
                 </div>
 
                 <div className={classes.Form}>
-                    <NewEntryForm onSubmit={this.onSubmit}/>
+                    <NewEntryForm onSubmit={this.onAddNewEntry}/>
                 </div>
 
                 <div className={classes.BudgetLists}>
-                    <EntryList type='income' sort={this.state.incomeSort} list={this.state.incomeList} total={this.state.income} onDeleteEntry={this.onDeleteEntry} onChangeSortMethod={this.onChangeSortMethod}/>
-                    <EntryList type='expense' sort={this.state.expenseSort} list={this.state.expenseList} total={this.state.income} onDeleteEntry={this.onDeleteEntry} onChangeSortMethod={this.onChangeSortMethod}/>
+                    <EntryList type='income' 
+                        sort={this.state.incomeSort} 
+                        list={this.state.incomeList} 
+                        total={this.state.income} 
+                        onDeleteEntry={this.onDeleteEntry} 
+                        onChangeSortMethod={this.onChangeSortMethod}/>
+
+                    <EntryList type='expense' 
+                        sort={this.state.expenseSort}
+                        list={this.state.expenseList}
+                        total={this.state.income}
+                        onDeleteEntry={this.onDeleteEntry}
+                        onChangeSortMethod={this.onChangeSortMethod}/>
                 </div>
             </div>
         )

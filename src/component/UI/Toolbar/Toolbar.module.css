@@ -10,5 +10,10 @@
 
 .Toolbar > *:first-child {
     -webkit-filter: drop-shadow(0.1em 0.1em 0.05em rgba(0,0,0,1));
+}
 
+.LogOut {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #000;
 }

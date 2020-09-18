@@ -6,6 +6,7 @@ import { calculatePercentage } from '../../utils';
 const entryList = (props) => {
     let title = 'Income', titleClasses = [classes.Title];
 
+    // Add class accordingly to change appearence
     if (props.type ==='expense') {
         title = 'Expense';
         titleClasses.push(classes.Expense);
