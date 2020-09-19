@@ -122,7 +122,7 @@ class Board extends Component {
             if (e.response) {
                 alert(e.response.data)
             } else {
-                alert('Could not connect to database....')
+                alert('Could not connect to database....');
             }
         })
         
