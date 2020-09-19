@@ -107,7 +107,7 @@ class Board extends Component {
     onDeleteEntry = (_id, type) => {
         axios.delete(`/${type}/${_id}?auth=${this.state.token}`)
         .then( response => {
-            const updatedList = [...this.state[`${type}List`]]
+            const updatedList = [...this.state[`${type}List`]];
 
             const index = updatedList.findIndex( (entry) => entry._id === _id);
 
