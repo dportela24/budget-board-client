@@ -43,7 +43,6 @@ const NewEntryForm = (props) => {
         e.preventDefault();
 
         if (formIsValid()) {
-            console.log('submiting')
             props.onSubmit(type, description.value, parseInt(value.value));
             clearInputs();
             descriptionInput.current.focus();
