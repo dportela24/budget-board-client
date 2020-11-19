@@ -1,7 +1,7 @@
 # Budget Board - Client Side
 
 <p align="center">
-  <img src="https://i.imgur.com/FyOici3.png" width=75%>
+  <img src="https://i.imgur.com/NmyvCr4.png" width=75%>
  </p>
 
 ## Project Summary
@@ -21,9 +21,24 @@ The web application is composed of two different views.
 
 ### Homepage
 
+<img src="https://i.imgur.com/2p2SuyO.png" width=50% align="right">
+
 An Homepage where the user can create a new account or log in with an existing one.
 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
 ### Board
+
+<img src="https://i.imgur.com/FyOici3.png" width=50% align="right">
 
 This view is divided in three sections. 
 
