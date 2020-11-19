@@ -27,7 +27,9 @@ class Board extends Component {
             this.props.history.replace('/');
         }
 
-        axios.get('/all-entries?auth=' + auth.token)
+        axios.defaults.headers.common['Authorization'] = auth.token;
+
+        axios.get('/all-entries')
         .then( response => {
             const fetchedIncomes = response.data.incomes;
             const fetchedExpenses = response.data.expenses;
@@ -69,7 +71,7 @@ class Board extends Component {
     }
 
     onAddNewEntry = (type, description, value) => {
-        axios.post(`/${type}?auth=${this.state.token}`, {description, value})
+        axios.post(`/${type}`, {description, value})
         .then( response => {
             const _id = response.data._id;
             const date = response.data.date;
@@ -105,7 +107,7 @@ class Board extends Component {
     }
 
     onDeleteEntry = (_id, type) => {
-        axios.delete(`/${type}/${_id}?auth=${this.state.token}`)
+        axios.delete(`/${type}/${_id}`)
         .then( response => {
             const updatedList = [...this.state[`${type}List`]];
 
