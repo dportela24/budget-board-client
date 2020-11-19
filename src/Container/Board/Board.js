@@ -26,7 +26,7 @@ class Board extends Component {
         if (!auth.token) {
             this.props.history.replace('/');
         }
-
+        
         axios.defaults.headers.common['Authorization'] = auth.token;
 
         axios.get('/all-entries')
