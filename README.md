@@ -1,8 +1,8 @@
 # Budget Board - Client Side
 
 <p align="center">
-  <img src="https://i.imgur.com/NmyvCr4.png" width=75%>
- </p>
+  <img src="https://i.imgur.com/NmyvCr4.png" width=66%>
+</p>
 
 ## Project Summary
 
